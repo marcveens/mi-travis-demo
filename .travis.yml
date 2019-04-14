@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - "stable"
+
+services:
+  - docker
+
+before_deploy: 
+  - docker build -t travisdemo.azurecr.io/travis-demo .
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
